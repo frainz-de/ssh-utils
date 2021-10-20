@@ -1,0 +1,3 @@
+#!/bin/sh
+ip l | grep -E '^[0-9]{1,4}: ' | cut -d':' -f2 | tr -d ' ' | grep $1 > /dev/null
+exit $?
