@@ -1,0 +1,6 @@
+Match exec "isInterface %h"
+    ProxyCommand connectInterface %h %p
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+Match all
+
