@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ -z "$2" ]
+then
+    >&2 echo "Please specify a port"
+    exit 1
+fi
+
+address=$(ping -w1 ff02::1%${1} | grep icmp_seq=1 | cut -d' ' -f4 | sed 's/.$//' | head -n2 | tail -n1)
+
+if [ -z "$address" ]
+then
+    >&2 echo "No address found"
+    exit 1
+fi
+
+>&2 echo "Connecting to $address on port $2"
+
+ncat $address $2
